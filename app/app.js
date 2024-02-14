@@ -13,6 +13,14 @@
                     controller: 'userCtrl',
                     templateUrl: '/app/templates/user.html'
                 })
+                .when('/adduser', {
+                    controller: 'userAddCtrl',
+                    templateUrl: '/app/templates/userAdd.html'
+                })
+                .when('/edituser/:id', {
+                    controller: 'userEditCtrl',
+                    templateUrl: '/app/templates/userEdit.html'
+                })
                 .otherwise({ redirectTo: '/' });
-        }])
+        }]) 
 })();
