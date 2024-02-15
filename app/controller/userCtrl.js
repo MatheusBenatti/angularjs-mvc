@@ -19,6 +19,10 @@
                     toastr.error('Error in deleting user with Id: ' + id);
                 });
             };
+            $scope.sortBy = function (column) {
+                $scope.sortColumn = column;
+                $scope.reverse = !$scope.reverse;
+            };
 
             $scope.users = [];
             getData();

@@ -5,23 +5,38 @@
 </p>
 <div>
     <div class="col-lg-6">
-            <label>Search</label>
-            <label>
-                <input type="text" class="form-control" ng-model="searchText" />
-            </label>
+        <label>Search</label>
+        <label>
+            <input type="text" class="form-control" ng-model="searchText" />
+        </label>
     </div>
     <table class="table table-bordered caption-top">
         <caption>List of users</caption>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
+                <th ng-click="sortBy('Name')">
+                    Name
+                    <span class="bi bi-caret-down-fill" ng-show="sortColumn=='Name'"
+                          ng-class="{'bi bi-caret-up-fill': !reverse, 'bi bi-caret-down-fill': reverse}">
+                    </span>
+                </th>
+                <th ng-click="sortBy('Email')">
+                    Email
+                    <span class="bi bi-caret-down-fill" ng-show="sortColumn=='Email'"
+                          ng-class="{'bi bi-caret-up-fill': !reverse, 'bi bi-caret-down-fill': reverse}">
+                    </span>
+                </th>
+                <th ng-click="sortBy('Address')">
+                    Address
+                    <span class="bi bi-caret-down-fill" ng-show="sortColumn=='Address'"
+                          ng-class="{'bi bi-caret-up-fill': !reverse, 'bi bi-caret-down-fill': reverse}">
+                    </span>
+                </th>
                 <th>#</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="i in users | filter: searchText">
+            <tr ng-repeat="i in users | filter: searchText | orderBy: sortColumn: reverse">
                 <td>{{i.Name}}</td>
                 <td>{{i.Email}}</td>
                 <td>{{i.Address}}</td>
