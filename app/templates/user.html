@@ -1,5 +1,8 @@
 ﻿<h1>User</h1>
-<button ng-click="createNewUser()" class="btn btn-primary">Create</button>
+<p>
+    <button ng-click="createNewUser()" class="btn btn-primary">Create</button>
+
+</p>
 <div>
     <table class="table table-bordered caption-top">
         <caption>List of users</caption>
@@ -13,7 +16,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="i in users">
-                <td>{{i.Name}}</td> 
+                <td>{{i.Name}}</td>
                 <td>{{i.Email}}</td>
                 <td>{{i.Address}}</td>
                 <td>

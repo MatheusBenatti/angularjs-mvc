@@ -1,21 +1,33 @@
 ﻿<h1>Update user</h1>
-<form ng-submit="updateUser(user)">
+<form name="formEditUser" ng-submit="updateUser(user)" novalidate>
     <hr />
 
     <div class="mb-3">
         <label for="nameInput" class="form-label">Name</label>
-        <input type="text" id="nameInput" class="form-control" ng-model="user.Name" />
+        <input type="text" id="nameInput" class="form-control" name="name" ng-model="user.Name" required ng-maxlength="32" />
+        <span class="text-danger" ng-show="(formEditUser.name.$touched || formEditUser.name.$dirty) && formEditUser.name.$invalid">
+            <span ng-show="formEditUser.name.$error.required">Name is required</span>
+            <span ng-show="formEditUser.name.$error.maxlength">Name must be less than or equal to 32</span>
+        </span>
     </div>
     <div class="mb-3">
         <label for="emailInput" class="form-label">Email</label>
-        <input type="email" id="emailInput" class="form-control" ng-model="user.Email" />
+        <input type="email" id="emailInput" class="form-control" name="mail" ng-model="user.Email" required ng-maxlength="50" />
+        <span class="text-danger" ng-show="(formEditUser.mail.$touched || formEditUser.mail.$dirty) && formEditUser.mail.$invalid">
+            <span ng-show="formEditUser.mail.$error.required">Email is required</span>
+            <span ng-show="formEditUser.mail.$error.email">Invalid email address</span>
+            <span ng-show="formEditUser.mail.$error.maxlength">Email must be less than or equal to 50</span>
+        </span>
     </div>
     <div class="mb-3">
         <label for="AddressInput" class="form-label">Address</label>
-        <input type="text" id="AddressInput" class="form-control" ng-model="user.Address" />
+        <input type="text" id="AddressInput" class="form-control" name="address" ng-model="user.Address" ng-maxlength="50" ng-minlength="2" />
+        <span ng-show="formEditUser.address.$dirty && (formEditUser.address.$error.minlength || formEditUser.address.$error.maxlength)">
+            Address must be in range 2 to 50
+        </span>
     </div>
     <div class="form-text">
-        <input type="submit" class="btn btn-success" value="Update" />
+        <input type="submit" class="btn btn-success" value="Update" ng-if="states.showUpdateButton" ng-disabled="formEditUser.$pristine || formEditUser.$invalid" />
         <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
     </div>
 </form>

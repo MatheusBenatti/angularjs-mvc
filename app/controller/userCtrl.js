@@ -44,8 +44,12 @@
         }])
         .controller('userEditCtrl', ['$scope', '$routeParams', '$location', 'dataService', function ($scope, $routeParams, $location, dataService) {
             $scope.user = {};
+            $scope.states = {
+                showUpdateButton: false
+            };
             dataService.getUserById($routeParams.id).then(function (result) {
                 $scope.user = result
+                $scope.states.showUpdateButton = true;
             }, function () {
                 toastr.error('Error in fetching user with Id:' + $routeParams.id)
             });
