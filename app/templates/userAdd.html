@@ -22,7 +22,7 @@
     <div class="mb-3">
         <label for="AddressInput" class="form-label">Address</label>
         <input type="text" id="AddressInput" class="form-control" name="address" ng-model="user.Address" ng-maxlength="50" ng-minlength="2" />
-        <span ng-show="formAddUser.address.$dirty && (formAddUser.address.$error.minlength || formAddUser.address.$error.maxlength)">
+        <span class="text-danger" ng-show="formAddUser.address.$dirty && (formAddUser.address.$error.minlength || formAddUser.address.$error.maxlength)">
             Address must be in range 2 to 50
         </span>
     </div>

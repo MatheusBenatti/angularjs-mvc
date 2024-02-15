@@ -4,6 +4,12 @@
 
 </p>
 <div>
+    <div class="col-lg-6">
+            <label>Search</label>
+            <label>
+                <input type="text" class="form-control" ng-model="searchText" />
+            </label>
+    </div>
     <table class="table table-bordered caption-top">
         <caption>List of users</caption>
         <thead>
@@ -15,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="i in users">
+            <tr ng-repeat="i in users | filter: searchText">
                 <td>{{i.Name}}</td>
                 <td>{{i.Email}}</td>
                 <td>{{i.Address}}</td>
@@ -24,7 +30,7 @@
                     <button ng-click="deleteUser(i.Id)" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
-            <tr ng-if="!users || users.length == 0">
+            <tr ng-if="!users || (users | filter: searchText).length == 0">
                 <td colspan="3" style="text-align: center">
                     No user data to display
                 </td>
