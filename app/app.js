@@ -3,7 +3,8 @@
 
     angular
         .module('app', [
-        'ngRoute'
+            'ngRoute',
+            'ui.bootstrap'
         ])
         .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
             $locationProvider.hashPrefix('');
@@ -22,5 +23,5 @@
                     templateUrl: '/app/templates/userEdit.html'
                 })
                 .otherwise({ redirectTo: '/' });
-        }]) 
+        }])
 })();

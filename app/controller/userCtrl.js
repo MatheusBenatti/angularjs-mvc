@@ -3,7 +3,15 @@
 
     angular
         .module('app')
-        .controller('userCtrl', ['$scope', '$location', 'dataService', function ($scope, $location, dataService) {
+        .controller('userCtrl', ['$scope', '$filter', '$location', 'dataService', function ($scope, $filter ,$location, dataService) {
+
+            $scope.users = [];
+            $scope.currentPage = 1;
+            $scope.itemsPerPage = 5;
+
+            getData();
+
+
             $scope.createNewUser = function () {
                 $location.path('/adduser');
             };
@@ -24,12 +32,11 @@
                 $scope.reverse = !$scope.reverse;
             };
 
-            $scope.users = [];
-            getData();
-
             function getData() {
                 dataService.getUsers().then(function (result) {
-                    $scope.users = result
+                    $scope.$watch('searchText', function (term) {
+                        $scope.users = $filter('filter')(result, term);
+                    });
                 });
             };
         }])
